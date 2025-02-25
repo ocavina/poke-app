@@ -4,39 +4,57 @@
   align-items: center;
   padding: 20px;
   width: 100%;
+  color: #ccc;
+  font-size: 24px;
 }
 
 .search-bar {
-  padding: 8px;
-  font-size: 16px;
-  border: 1px solid #ccc;
+  padding: 10px;
+  font-size: 24px;
+  border: 2px solid #ccc;
   border-radius: 5px;
   width: 200px; /* Fixed width to prevent resizing */
-  text-align: center;
+  text-align: left;
+}
+
+body {
+  background-color: #000000; /* Change this to any color you want */
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
 }
 
 
 .container {
   text-align: center;
-  padding: 20px;
+  padding: 50px;
+  font-size: 10px;
+  color: #000000;
+  font-weight: bold;
+  text-transform: capitalize;
 }
 
 .flex-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center; /* Centers items horizontally */
-  gap: 10px;
+  gap: 20px;
   max-width: 100%;
   margin: 0 auto;
 }
 
 .pokemon-card {
-  background: #000000;
-  padding: 10px;
-  border-radius: 8px;
-  text-align: center;
-  transition: transform 0.2s;
-  width: 100px; /* Fixed width per card */
+  background-image: url("/poke.JPG"); /* Path to image in 'public' folder */
+  background-size: cover; /* Ensure the image covers the card */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Prevent tiling */
+  border-radius: 25px;
+  padding: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .pokemon-card:hover {
@@ -44,13 +62,9 @@
 }
 
 .pokemon-card img {
-  width: 100px;
-  height: 100px;
-}
-
-.details-container {
-  text-align: center;
-  padding: 20px;
+  width: 150px;
+  height: 150px;
+  margin-top: 20px
 }
 
 .large-image {
@@ -78,37 +92,48 @@
 }
 
 .filter-dropdown {
-  padding: 8px;
-  font-size: 16px;
+  padding: 10px;
+  font-size: 24px;
   border: 1px solid #ccc;
   border-radius: 5px;
   margin-left: 10px;
+  margin-right: 10%;
   cursor: pointer;
 }
 
+
+
 .details-container {
+  margin-top: 0 ; /* Ensures it starts at the top */
+  padding-top: 10px;
   display: flex;
   flex-direction: row;
   justify-content: space-between; /* Ensures full width usage */
   align-items: flex-start;
   gap: 20px;
-  padding: 20px;
+  color: white;
+  font-size: large;
+  padding: 10px;
   text-align: left;
   width: 100vw; /* Makes it take the full width of the viewport */
   height: 100vh; /* Makes it take full height */
-  overflow: auto; /* Enables scrolling if content overflows */
+   /* Enables scrolling if content overflows */
 }
 
+
+
 .details-left {
-  flex: 3;
+  flex: 2;
   max-width: 1200px;
   text-align: center;
 }
 
 .details-right {
-  flex: 2;
+  flex: 1;
   max-width: 1200px;
 }
+
+
 
 .stats-list, .moves-list {
   list-style-type: none;
@@ -119,11 +144,46 @@
 }
 
 .stats-list li, .moves-list li {
-  background: #000000;
+  background: #5f5f5f;
   padding: 4px;
-  border-radius: 2px;
+  border-radius: 5px;
   min-width: 150px;
   text-align: left;
+  color: white;
+}
+
+
+.loading-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: rgb(0, 0, 0);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+}
+
+.loading-gif {
+  max-width: auto; /* Default size */
+  height: auto;
+  animation: spin 2s linear infinite;
+}
+
+/* 🔹 Adjust size for smaller screens (tablets & phones) */
+@media (max-width: 768px) {
+  .loading-gif {
+    max-width: 100px; /* Smaller for tablets */
+  }
+}
+
+@media (max-width: 480px) {
+  .loading-gif {
+    max-width: 80px; /* Smaller for mobile devices */
+  }
 }
 
 /* Responsive Design */
@@ -142,5 +202,17 @@
 @media (max-width: 500px) {
   .pokemon-card {
     width: 100px; /* Smallest for mobile */
+  }
+}
+
+@media (max-width: 800px) {
+  .details-container {
+    flex-direction: column; /* Stack elements vertically on smaller screens */
+    align-items: center;
+    text-align: center;
+  }
+
+  .details-left, .details-right {
+    max-width: 100%; /* Allows full width on smaller screens */
   }
 }
