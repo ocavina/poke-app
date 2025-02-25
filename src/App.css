@@ -1,42 +1,218 @@
-#root {
-  max-width: 1280px;
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  width: 100%;
+  color: #ccc;
+  font-size: 24px;
+}
+
+.search-bar {
+  padding: 10px;
+  font-size: 24px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  width: 200px; /* Fixed width to prevent resizing */
+  text-align: left;
+}
+
+body {
+  background-color: #000000; /* Change this to any color you want */
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+
+.container {
+  text-align: center;
+  padding: 50px;
+  font-size: 10px;
+  color: #000000;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Centers items horizontally */
+  gap: 20px;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 2rem;
+}
+
+.pokemon-card {
+  background-image: url("/poke.JPG"); /* Path to image in 'public' folder */
+  background-size: cover; /* Ensure the image covers the card */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Prevent tiling */
+  border-radius: 25px;
+  padding: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.pokemon-card:hover {
+  transform: scale(1.1);
+}
+
+.pokemon-card img {
+  width: 150px;
+  height: 150px;
+  margin-top: 20px
+}
+
+.large-image {
+  width: 50%;
+  height: 50%;
+}
+
+.back-button {
+  position: absolute;
+  bottom: 20px;
+  left: 10%;
+  transform: translateX(-50%);
+  padding: 12px 18px;
+  background: #ffcc00;
+  border-radius: 5px;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+.back-button:hover {
+  background: #e6b800;
+}
+
+.filter-dropdown {
+  padding: 10px;
+  font-size: 24px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-left: 10px;
+  margin-right: 10%;
+  cursor: pointer;
+}
+
+
+
+.details-container {
+  margin-top: 0 ; /* Ensures it starts at the top */
+  padding-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; /* Ensures full width usage */
+  align-items: flex-start;
+  gap: 20px;
+  color: white;
+  font-size: large;
+  padding: 10px;
+  text-align: left;
+  width: 100vw; /* Makes it take the full width of the viewport */
+  height: 100vh; /* Makes it take full height */
+   /* Enables scrolling if content overflows */
+}
+
+
+
+.details-left {
+  flex: 2;
+  max-width: 1200px;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.details-right {
+  flex: 1;
+  max-width: 1200px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+
+
+.stats-list, .moves-list {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.stats-list li, .moves-list li {
+  background: #5f5f5f;
+  padding: 4px;
+  border-radius: 5px;
+  min-width: 150px;
+  text-align: left;
+  color: white;
+}
+
+
+.loading-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: rgb(0, 0, 0);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+}
+
+.loading-gif {
+  max-width: auto; /* Default size */
+  height: auto;
+  animation: spin 2s linear infinite;
+}
+
+/* 🔹 Adjust size for smaller screens (tablets & phones) */
+@media (max-width: 768px) {
+  .loading-gif {
+    max-width: 100px; /* Smaller for tablets */
   }
-  to {
-    transform: rotate(360deg);
+}
+
+@media (max-width: 480px) {
+  .loading-gif {
+    max-width: 80px; /* Smaller for mobile devices */
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .pokemon-card {
+    width: 130px; /* Slightly smaller for medium screens */
   }
 }
 
-.card {
-  padding: 2em;
+@media (max-width: 800px) {
+  .pokemon-card {
+    width: 120px; /* Even smaller for small screens */
+  }
 }
 
-.read-the-docs {
-  color: #888;
+@media (max-width: 500px) {
+  .pokemon-card {
+    width: 100px; /* Smallest for mobile */
+  }
+}
+
+@media (max-width: 800px) {
+  .details-container {
+    flex-direction: column; /* Stack elements vertically on smaller screens */
+    align-items: center;
+    text-align: center;
+  }
+
+  .details-left, .details-right {
+    max-width: 100%; /* Allows full width on smaller screens */
+  }
 }
