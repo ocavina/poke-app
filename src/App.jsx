@@ -28,35 +28,24 @@ function App() {
               ...pokemon,
               id: index + 1,
               image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png`,
-              type: pokeData.types.map((t) => t.type.name)[0] // Get first type
+              type: pokeData.types?.map((t) => t.type.name)[0] || "unknown", // Ensure no undefined errors
             }))
         );
   
-        Promise.all(fetchPromises).then((pokemonWithTypes) => {
-          setPokemonList(pokemonWithTypes);
-          setFilteredPokemon(pokemonWithTypes);
-  
-          // 🔹 Add a delay before stopping the loading state
-          setTimeout(() => {
-            setIsLoading(false);
-          }, 1000); // 30-second delay
-        });
+        return Promise.all(fetchPromises);
+      })
+      .then((pokemonWithTypes) => {
+        setPokemonList(pokemonWithTypes);
+        setFilteredPokemon(pokemonWithTypes);
+        setIsLoading(false); // ✅ Stop loading here
       })
       .catch((error) => {
         console.error("Error fetching Pokémon data:", error);
-        setIsLoading(false); // Stop loading even if there's an error
+        setIsLoading(false); // ✅ Ensure loading stops even if there’s an error
       });
-  
-    fetch(TYPE_API_URL)
-      .then((response) => response.json())
-      .then((data) => {
-        const filteredTypes = data.results.filter(type => type.name !== "unknown" && type.name !== "shadow");
-        setTypes(filteredTypes);
-      })
-      .catch((error) => console.error("Error fetching types:", error));
   }, []);
   
-
+  
   const handleSearch = (event) => {
     setSearchTerm(event.target.value.toLowerCase());
   };
